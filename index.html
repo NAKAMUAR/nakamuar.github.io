@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="玄関" />
+  <meta name="theme-color" content="#a85a3a" />
+  <meta name="description" content="毎日を整える、3つの習慣。" />
+  <title>玄関 — Personal Portal</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f5ecd9'/%3E%3Ctext x='50' y='74' text-anchor='middle' font-size='68' font-family='serif' fill='%23a85a3a'%3E玄%3C/text%3E%3C/svg%3E" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg: #f5ecd9;
+      --bg-card: #fffaf0;
+      --ink: #3a2a1a;
+      --ink-soft: #6a5742;
+      --ink-faint: #9a8770;
+      --line: rgba(168, 90, 58, 0.18);
+      --line-soft: rgba(168, 90, 58, 0.10);
+      --shu: #a85a3a;        /* 朱色 - 整え */
+      --wakaba: #5d7a4a;     /* 若葉色 - 言の葉 */
+      --ai: #2c4a6b;         /* 藍色 - LPIC */
+    }
+
+    html, body { min-height: 100vh; }
+
+    body {
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "MS Mincho", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      font-feature-settings: "palt";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 36px 22px 48px;
+    }
+
+    /* ─── Hero ─────────────────────── */
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 1px;
+      background: var(--shu);
+    }
+    .hero-mark {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-style: italic;
+      padding-left: 0.5em;
+    }
+    .hero-title {
+      font-size: 44px;
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      color: var(--shu);
+      margin-bottom: 8px;
+      padding-left: 0.4em;
+    }
+    .hero-sub {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 16px;
+      padding-left: 0.25em;
+    }
+    .hero-tag {
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.15em;
+    }
+
+    /* ─── Cards ─────────────────────── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg-card);
+      border-radius: 4px;
+      padding: 22px 22px 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(58, 42, 26, 0.04), 0 4px 12px rgba(58, 42, 26, 0.04);
+      border: 1px solid var(--line-soft);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card:active {
+      transform: scale(0.985);
+      box-shadow: 0 1px 2px rgba(58, 42, 26, 0.04), 0 2px 6px rgba(58, 42, 26, 0.06);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .card-num {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+    }
+    .card-title {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      padding-left: 0.18em;
+    }
+    .card-roma {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-left: 0.2em;
+    }
+    .card-desc {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px dashed var(--line);
+    }
+    .card-tag {
+      font-family: Georgia, serif;
+      font-size: 10px;
+      font-style: italic;
+      letter-spacing: 0.3em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+    }
+    .card-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-style: italic;
+      letter-spacing: 0.15em;
+    }
+    .card-go-arrow {
+      font-style: normal;
+      font-size: 14px;
+    }
+
+    .card-1 { --accent: var(--shu); }
+    .card-2 { --accent: var(--wakaba); }
+    .card-3 { --accent: var(--ai); }
+
+    /* ─── Footer ─────────────────────── */
+    .seal {
+      margin: 40px auto 0;
+      width: 56px;
+      height: 56px;
+      border: 1.5px solid var(--shu);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--shu);
+      font-size: 24px;
+      transform: rotate(-3deg);
+      opacity: 0.85;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 18px;
+      font-family: Georgia, serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-faint);
+      font-style: italic;
+      text-transform: uppercase;
+    }
+    .footer-jp {
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      letter-spacing: 0.3em;
+      font-style: normal;
+      text-transform: none;
+    }
+
+    /* ─── Animations ─────────────────────── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fade-up 0.7s ease 0.05s both; }
+    .card-1 { animation: fade-up 0.7s ease 0.18s both; }
+    .card-2 { animation: fade-up 0.7s ease 0.30s both; }
+    .card-3 { animation: fade-up 0.7s ease 0.42s both; }
+    .seal, .footer { animation: fade-up 0.7s ease 0.6s both; }
+
+    @media (max-width: 380px) {
+      .hero-title { font-size: 38px; }
+      .card-title { font-size: 24px; }
+      .wrap { padding: 28px 18px 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-mark">— Personal Portal —</div>
+      <h1 class="hero-title">玄関</h1>
+      <div class="hero-sub">Genkan</div>
+      <div class="hero-tag">毎日を整える、3つの習慣</div>
+    </header>
+
+    <main class="cards">
+      <a class="card card-1" href="https://nakamuar.github.io/totonoe/">
+        <div class="card-num">No. 01</div>
+        <h2 class="card-title">整 え</h2>
+        <div class="card-roma">Totonoe</div>
+        <p class="card-desc">朝・昼・夜のヨガと眠気の対処。<br />体と心のリズムを整える。</p>
+        <div class="card-foot">
+          <span class="card-tag">Yoga &amp; Wellness</span>
+          <span class="card-go">Open <span class="card-go-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="card card-2" href="https://nakamuar.github.io/kotonoha/">
+        <div class="card-num">No. 02</div>
+        <h2 class="card-title">言の葉</h2>
+        <div class="card-roma">Kotonoha</div>
+        <p class="card-desc">英語とベトナム語の学習。<br />ビジネスで使える言葉を毎日。</p>
+        <div class="card-foot">
+          <span class="card-tag">Language</span>
+          <span class="card-go">Open <span class="card-go-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="card card-3" href="https://lpic-study-k5mky4q99-nakamuars-projects.vercel.app/">
+        <div class="card-num">No. 03</div>
+        <h2 class="card-title">言の葉×LPIC</h2>
+        <div class="card-roma">Kotonoha × LPIC</div>
+        <p class="card-desc">LPIC-1合格に向けた能動学習。<br />道場・修行録・試験対策。</p>
+        <div class="card-foot">
+          <span class="card-tag">Certification</span>
+          <span class="card-go">Open <span class="card-go-arrow">→</span></span>
+        </div>
+      </a>
+    </main>
+
+    <div class="seal" aria-hidden="true">玄</div>
+    <div class="footer">
+      <div>Personal Apps Portal</div>
+      <div class="footer-jp">日々の習慣、ここから</div>
+    </div>
+  </div>
+</body>
+</html>
