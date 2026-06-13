@@ -62,6 +62,18 @@ python main.py
 Enter で録音開始 → もう一度 Enter で停止 → 認識結果と生成依頼文が表示 →
 確認後にクリップボードへコピー → Genspark に貼り付けて実行。
 
+### Windows: bat ファイルで一発起動
+
+`start.bat` をダブルクリックすると、次を順に実行します。
+
+1. 既定ブラウザで Genspark（`https://www.genspark.ai/`）を開く
+2. 仮想環境 `.venv` を有効化（あれば）して `main.py` を起動
+
+> Genspark を開くのは「ユーザーが手動でサイトを開く」のと同じ操作であり、
+> 自動操作（規約で禁じられたスクレイピング等）には当たりません。
+> ブラウザを開くだけにしたい場合は、bat の 2) 部分（`main.py` 起動行）を削れば
+> 「Genspark を開くだけ」のランチャーになります。
+
 ## 設計書との対応
 
 - §4.1 STT … faster-whisper（small/medium 切替・CPU・日本語）。クラウド STT へ差し替え可。
