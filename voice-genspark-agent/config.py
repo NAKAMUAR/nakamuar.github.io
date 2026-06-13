@@ -9,6 +9,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def _as_bool(value: str) -> bool:
+    return value.strip().lower() in {"1", "true", "yes", "y", "on"}
+
+
 @dataclass
 class Config:
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
@@ -19,6 +23,13 @@ class Config:
     stt_language: str = os.getenv("STT_LANGUAGE", "ja")
     sample_rate: int = int(os.getenv("SAMPLE_RATE", "16000"))
     record_seconds: float = float(os.getenv("RECORD_SECONDS", "0"))
+
+    # 受け渡し（handoff）設定
+    genspark_url: str = os.getenv("GENSPARK_URL", "https://www.genspark.ai/")
+    open_in_browser: bool = _as_bool(os.getenv("OPEN_IN_BROWSER", "true"))
+    # 貼り付け(Ctrl+V)まで自動化するか。送信は絶対に自動化しない。
+    auto_paste: bool = _as_bool(os.getenv("AUTO_PASTE", "false"))
+    paste_delay: float = float(os.getenv("PASTE_DELAY", "4"))
 
 
 config = Config()

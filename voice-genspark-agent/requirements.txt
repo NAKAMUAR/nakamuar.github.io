@@ -4,3 +4,6 @@ numpy>=1.24
 google-genai>=0.3.0
 pyperclip>=1.8.2
 python-dotenv>=1.0.0
+
+# 任意: AUTO_PASTE=true（Ctrl+V まで自動）にする場合のみ必要
+# pyautogui>=0.9.54
