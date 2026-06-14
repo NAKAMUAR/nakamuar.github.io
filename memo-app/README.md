@@ -1,6 +1,6 @@
 # Cloud Memo
 
-テキストメモ + ファイル添付（画像・PDF）を保存できる、完全無料枠で運用できるクラウド型メモアプリです。
+テキストメモ + ファイル添付（画像・PDF）+ カレンダー（スケジュール）を保存できる、完全無料枠で運用できるクラウドアプリです。
 
 - **フレームワーク**: Next.js (App Router) + TypeScript
 - **UI**: Tailwind CSS
@@ -14,6 +14,10 @@
 - 画像・PDF の添付（クライアントから Storage へ直接アップロード）
   - 画像はサムネイル、PDF はアイコン表示。クリックで署名付き URL を開く
   - 1ファイル最大 10MB、拡張子は png / jpg / jpeg / gif / webp / pdf のみ
+- カレンダー（Apple 標準カレンダー相当）
+  - 月表示グリッド、前月 / 翌月 / 今日への移動、日付セルに予定をチップ表示
+  - 予定の作成・編集・削除（タイトル / 場所 / 終日 / 開始・終了日時 / カラー / メモ）
+  - 日付を選ぶとその日の予定一覧を表示
 - Row Level Security で「本人のデータのみ」を保証
 
 ---
@@ -53,6 +57,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...
 1. ダッシュボードの **SQL Editor** を開きます。
 2. `supabase/migrations/0001_init.sql` の内容を貼り付けて Run。
 3. 続けて `supabase/migrations/0002_storage.sql` の内容を貼り付けて Run。
+4. 続けて `supabase/migrations/0003_calendar.sql` の内容を貼り付けて Run（カレンダー用 `events` テーブル + RLS）。
 
 **方法 B: Supabase CLI**
 
@@ -64,8 +69,8 @@ supabase db push
 
 これにより以下が作成されます。
 
-- `notes` / `attachments` テーブル、インデックス、`updated_at` 自動更新トリガー
-- 両テーブルの RLS 有効化と「本人のみ」ポリシー
+- `notes` / `attachments` / `events` テーブル、インデックス、`updated_at` 自動更新トリガー
+- 各テーブルの RLS 有効化と「本人のみ」ポリシー
 - **private** な `attachments` バケットと、`{user_id}/...` 配下のみ read/write/delete を許可する Storage ポリシー
 
 ### 4. attachments バケットの確認（private）
@@ -113,9 +118,10 @@ memo-app/
 │   ├── login/page.tsx          # ログイン / サインアップ
 │   ├── page.tsx                # メモ一覧（検索・アーカイブ）
 │   ├── notes/[id]/page.tsx     # メモ編集 + 添付
+│   ├── calendar/page.tsx       # カレンダー（月表示）
 │   ├── actions.ts              # Server Actions（作成 / アーカイブ / 削除）
 │   └── auth/signout/route.ts   # ログアウト
-├── components/                 # NoteCard, NoteEditor, Attachments など
+├── components/                 # NoteCard, NoteEditor, Attachments, CalendarView, EventEditor など
 ├── lib/
 │   ├── supabase/               # client.ts, server.ts, middleware.ts
 │   ├── constants.ts            # バケット名 / 制限値 / バリデーション

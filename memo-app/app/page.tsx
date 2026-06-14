@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 
+import { Nav } from "@/components/Nav";
 import { NewNoteButton } from "@/components/NewNoteButton";
 import { NoteCard } from "@/components/NoteCard";
 import { SearchBar } from "@/components/SearchBar";
-import { SignOutButton } from "@/components/SignOutButton";
 import { createClient } from "@/lib/supabase/server";
 import type { Note } from "@/lib/types";
 
@@ -43,16 +43,12 @@ export default async function HomePage({
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8">
-      <header className="mb-6 flex items-center justify-between gap-4">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight">Cloud Memo</h1>
-          <p className="truncate text-xs text-neutral-500">{user.email}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <NewNoteButton />
-          <SignOutButton />
-        </div>
-      </header>
+      <Nav active="memo" email={user.email ?? ""} />
+
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <h1 className="text-xl font-semibold tracking-tight">メモ</h1>
+        <NewNoteButton />
+      </div>
 
       <SearchBar defaultQuery={q} showArchived={showArchived} />
 

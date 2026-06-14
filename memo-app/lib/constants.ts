@@ -1,6 +1,36 @@
 /** Storage bucket name (must match the bucket created in Supabase). */
 export const STORAGE_BUCKET = "attachments";
 
+/**
+ * Calendar event colors (Apple Calendar 風のプリセット). Tailwind purges
+ * unused classes, so the full class strings are listed statically here.
+ */
+export type EventColorKey =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "purple";
+
+export const EVENT_COLORS: Record<
+  EventColorKey,
+  { label: string; dot: string; chip: string; ring: string }
+> = {
+  red: { label: "レッド", dot: "bg-red-500", chip: "bg-red-100 text-red-800", ring: "ring-red-500" },
+  orange: { label: "オレンジ", dot: "bg-orange-500", chip: "bg-orange-100 text-orange-800", ring: "ring-orange-500" },
+  yellow: { label: "イエロー", dot: "bg-amber-500", chip: "bg-amber-100 text-amber-800", ring: "ring-amber-500" },
+  green: { label: "グリーン", dot: "bg-green-500", chip: "bg-green-100 text-green-800", ring: "ring-green-500" },
+  blue: { label: "ブルー", dot: "bg-blue-500", chip: "bg-blue-100 text-blue-800", ring: "ring-blue-500" },
+  purple: { label: "パープル", dot: "bg-purple-500", chip: "bg-purple-100 text-purple-800", ring: "ring-purple-500" },
+};
+
+export const DEFAULT_EVENT_COLOR: EventColorKey = "blue";
+
+export function eventColor(key: string) {
+  return EVENT_COLORS[(key as EventColorKey) in EVENT_COLORS ? (key as EventColorKey) : DEFAULT_EVENT_COLOR];
+}
+
 /** Maximum size per uploaded file: 10 MB. */
 export const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 

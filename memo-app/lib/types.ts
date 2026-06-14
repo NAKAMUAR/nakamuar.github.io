@@ -24,6 +24,20 @@ export type Attachment = {
   created_at: string;
 };
 
+export type Event = {
+  id: string;
+  user_id: string;
+  title: string;
+  location: string | null;
+  notes: string | null;
+  all_day: boolean;
+  starts_at: string;
+  ends_at: string;
+  color: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -70,6 +84,36 @@ export type Database = {
           mime_type?: string | null;
           size_bytes?: number | null;
           created_at?: string;
+        };
+        Relationships: [];
+      };
+      events: {
+        Row: Event;
+        Insert: {
+          id?: string;
+          user_id: string;
+          title?: string;
+          location?: string | null;
+          notes?: string | null;
+          all_day?: boolean;
+          starts_at: string;
+          ends_at: string;
+          color?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          title?: string;
+          location?: string | null;
+          notes?: string | null;
+          all_day?: boolean;
+          starts_at?: string;
+          ends_at?: string;
+          color?: string;
+          created_at?: string;
+          updated_at?: string;
         };
         Relationships: [];
       };
