@@ -9,17 +9,20 @@ from __future__ import annotations
 import queue
 import sys
 
-import numpy as np
-import sounddevice as sd
-
 from config import config
 
+# numpy / sounddevice は録音時のみ必要なため遅延 import にする
+# （マイクやオーディオライブラリが無い環境でも本モジュールを import できるようにする）
 
-def record_audio() -> np.ndarray:
+
+def record_audio() -> "np.ndarray":
     """マイクから録音し、mono float32 波形を返す。
 
     RECORD_SECONDS > 0 なら固定秒数、0 なら Enter で開始/停止。
     """
+    import numpy as np
+    import sounddevice as sd
+
     sr = config.sample_rate
 
     if config.record_seconds > 0:
