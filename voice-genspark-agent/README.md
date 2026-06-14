@@ -56,6 +56,13 @@
 
 ## セットアップ
 
+### Windows（かんたん）
+
+`setup.bat` をダブルクリック → 仮想環境作成・依存インストール・`.env` 作成まで自動。
+完了後、`.env` を開いて `GEMINI_API_KEY` を記入する。
+
+### 手動（Mac / Linux / 仕組みを把握したい場合）
+
 ```bash
 cd voice-genspark-agent
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
