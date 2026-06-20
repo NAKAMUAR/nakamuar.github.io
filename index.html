@@ -29,6 +29,7 @@
       --shu: #a85a3a;        /* 朱色 - 整え */
       --wakaba: #5d7a4a;     /* 若葉色 - 言の葉 */
       --ai: #2c4a6b;         /* 藍色 - LPIC */
+      --murasaki: #6b5b95;   /* 紫 - 習慣の暦 */
     }
 
     html, body { min-height: 100vh; }
@@ -203,6 +204,7 @@
     .card-1 { --accent: var(--shu); }
     .card-2 { --accent: var(--wakaba); }
     .card-3 { --accent: var(--ai); }
+    .card-4 { --accent: var(--murasaki); }
 
     /* ─── Footer ─────────────────────── */
     .seal {
@@ -248,7 +250,8 @@
     .card-1 { animation: fade-up 0.7s ease 0.18s both; }
     .card-2 { animation: fade-up 0.7s ease 0.30s both; }
     .card-3 { animation: fade-up 0.7s ease 0.42s both; }
-    .seal, .footer { animation: fade-up 0.7s ease 0.6s both; }
+    .card-4 { animation: fade-up 0.7s ease 0.54s both; }
+    .seal, .footer { animation: fade-up 0.7s ease 0.66s both; }
 
     @media (max-width: 380px) {
       .hero-title { font-size: 38px; }
@@ -267,7 +270,7 @@
       <div class="hero-mark">— Personal Portal —</div>
       <h1 class="hero-title">玄関</h1>
       <div class="hero-sub">Genkan</div>
-      <div class="hero-tag">毎日を整える、3つの習慣</div>
+      <div class="hero-tag">毎日を整える、4つの習慣</div>
     </header>
 
     <main class="cards">
@@ -300,6 +303,17 @@
         <p class="card-desc">LPIC-1合格に向けた能動学習。<br />道場・修行録・試験対策。</p>
         <div class="card-foot">
           <span class="card-tag">Certification</span>
+          <span class="card-go">Open <span class="card-go-arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="card card-4" href="https://nakamuar.github.io/habit/">
+        <div class="card-num">No. 04</div>
+        <h2 class="card-title">習慣の暦</h2>
+        <div class="card-roma">Koyomi</div>
+        <p class="card-desc">外見・健康・内面、3つの焦点。<br />毎日の習慣を、暦に刻む。</p>
+        <div class="card-foot">
+          <span class="card-tag">Habit Tracker</span>
           <span class="card-go">Open <span class="card-go-arrow">→</span></span>
         </div>
       </a>
